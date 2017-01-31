@@ -1,0 +1,12 @@
+//категория название автор дата
+
+//&!&book &!&garry potter &!&dj rouling &!&2017-01-2017
+
+//&!&movie &!&Avatar &!&cameron &!&2017-01-2017
+
+//disk  (game/music) title price date
+//&!&disk &!&Avatar &!&cameron &!&2017-01-2017
+
+&b &
+&d
+&m
