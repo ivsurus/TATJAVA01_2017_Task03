@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <news_data_base xmlns:base="http://my_name_space.com">
-    <base:news>
+    <base:news id="1">
         <category>
             MOVIES
         </category>
@@ -17,7 +17,7 @@
             2017-01-31
         </date>
     </base:news>
-    <base:news>
+    <base:news id="2">
         <category>
             MOVIES
         </category>
@@ -34,7 +34,7 @@
             2017-01-31
         </date>
     </base:news>
-    <base:news>
+    <base:news id="3">
         <category>
             BOOKS
         </category>
@@ -51,8 +51,8 @@
         <date>
             2017-01-30
         </date>
-    </base:news>
-    <base:news>
+    </base:news >
+    <base:news id="4">
         <category>
             DISKS
         </category>
