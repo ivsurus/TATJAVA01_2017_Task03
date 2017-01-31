@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<news_data_base xmlns:base="http://my_name_space.com">
+    <base:news>
+        <category>
+            MOVIES
+        </category>
+        <title>
+            TWO DIRECTORS ALREADY IN THE RUNNING AS BEN AFFLECK REPLACEMENTS ON BATMAN
+        </title>
+        <body>
+            The DC Extended Universe, or DCEU, took another devastating blow when a director -- another director -- departed one of the creative group's pending blockbusters. Only, this one cuts deep. Ben Affleck, who has been the beacon of light and hope for a majority of Batman fans, announced that he no longer will direct the solo Batman movie that Warner Bros. plans to release (on an undisclosed date). For Affleck's reasons why, click here. As to who might replace him, two names already have surfaced.
+        </body>
+        <author>
+            SEAN O'CONNELL
+        </author>
+        <date>
+            2017-01-31
+        </date>
+    </base:news>
+    <base:news>
+        <category>
+            MOVIES
+        </category>
+        <title>
+            THE FINAL BEAUTY AND THE BEAST TRAILER IS EXCITING AND ENCHANTING
+        </title>
+        <body>
+            This bombshell creates so many new questions for the DCEU. Who will they hire to replace Ben Affleck? When will this movie actually come out? Should it be sidelined for a long period of time, giving room to projects like Shazam and Black Adam?
+        </body>
+        <author>
+            ADAM HOLMES
+        </author>
+        <date>
+            2017-01-31
+        </date>
+    </base:news>
+    <base:news>
+        <category>
+            BOOKS
+        </category>
+        <title>
+            Oxford dictionary considers including wave of Trumpian neologisms
+        </title>
+        <body>
+            Mud-slinging by Donald Trump, as well as his supporters and critics, has not only affected political debate, it has created a vocabulary of insults that lexicographers are struggling to keep up with, as each side becomes more linguistically creative in their bid to knock 10 bells out of social media opponents.
+            Trumponomics (the president’s economic policy), trumpertantrum (angry early-morning tweeting laced with innuendo and falsehood) and trumpkin (a pumpkin carved to resemble the former TV host) are among neologisms added to a watchlist of words that may be fast-tracked into the Oxford English Dictionary. They follow in the wake of new coinages created by the political upheaval of the last two years, including “alt-right” and “Brexit”, which were added to the reference bible last year.
+        </body>
+        <author>
+            Danuta Kean
+        </author>
+        <date>
+            2017-01-30
+        </date>
+    </base:news>
+    <base:news>
+        <category>
+            DISKS
+        </category>
+        <title>
+            Richard Osman claimed that Kanye West would be appearing on ‘Pointless’
+        </title>
+        <body>
+            Last night saw fans briefly excited by the revelation that Kanye West would be appearing on the TV quiz show ‘Pointless’, before co-host Richard Osman soon revealed that it was a hoax.
+            In since deleted Tweets, Osman sent fans into a frenzy by revealing that not only was Yeezy a huge fan of the show, but that he’d be appearing on a celebrity special of the show, as well as hosting a US spin-off of the quiz.
+        </body>
+        <author>
+            Andrew Trendell
+        </author>
+        <date>
+            2017-01-31
+        </date>
+    </base:news>
+</news_data_base>

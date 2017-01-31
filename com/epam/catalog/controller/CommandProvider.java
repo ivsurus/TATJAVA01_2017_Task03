@@ -4,6 +4,7 @@ package com.epam.catalog.controller;
 import com.epam.catalog.controller.command.Command;
 import com.epam.catalog.controller.command.impl.AddNews;
 import com.epam.catalog.controller.command.impl.FindNews;
+import com.epam.catalog.controller.command.impl.WrongRequest;
 
 import java.util.HashMap;
 import java.util.Map;
