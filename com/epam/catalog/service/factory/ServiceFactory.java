@@ -1,8 +1,12 @@
 package com.epam.catalog.service.factory;
 
 
-import com.epam.catalog.service.CatalogService;
-import com.epam.catalog.service.impl.CatalogServiceImpl;
+import com.epam.catalog.service.BookService;
+import com.epam.catalog.service.DiskService;
+import com.epam.catalog.service.MovieService;
+import com.epam.catalog.service.impl.BookServiceImpl;
+import com.epam.catalog.service.impl.DiskServiceImpl;
+import com.epam.catalog.service.impl.MovieServiceImpl;
 
 /*предоставим предоставим возможность получения доступа к реализации, не открывая имена конкретных классов.*/
 
@@ -19,7 +23,9 @@ public final class ServiceFactory {
     private static final ServiceFactory instance = new ServiceFactory();
 
 
-    private final CatalogService catalogService = new CatalogServiceImpl();
+    private final BookService bookService = new BookServiceImpl();
+    private final DiskService diskService = new DiskServiceImpl();
+    private final MovieService movieService = new MovieServiceImpl();
 
     //singleton
     private ServiceFactory(){}
@@ -30,8 +36,14 @@ public final class ServiceFactory {
     }
 
 
-    public CatalogService getCatalogService(){
-        return catalogService;
+    public BookService getBookService(){
+        return bookService;
+    }
+    public DiskService getDiskService(){
+        return diskService;
+    }
+    public MovieService getMovieService(){
+        return movieService;
     }
 
 
