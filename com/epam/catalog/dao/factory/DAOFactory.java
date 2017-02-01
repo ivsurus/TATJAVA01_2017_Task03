@@ -1,7 +1,11 @@
 package com.epam.catalog.dao.factory;
 
-import com.epam.catalog.dao.NewsDAO;
-import com.epam.catalog.dao.impl.ExelNewsDAO;
+import com.epam.catalog.dao.BookDAO;
+import com.epam.catalog.dao.DiskDAO;
+import com.epam.catalog.dao.MovieDAO;
+import com.epam.catalog.dao.impl.TxtBookDAO;
+import com.epam.catalog.dao.impl.TxtDiskDAO;
+import com.epam.catalog.dao.impl.TxtMovieDAO;
 
 /* Далее предоставим предоставим возможность получения доступа к реализации, не открывая имена конкретных классов.*/
 
@@ -21,18 +25,26 @@ public final class DAOFactory {
 
     private static final DAOFactory instance = new DAOFactory();
 
-    private final NewsDAO exelNewsImpl = new ExelNewsDAO();
+    private final BookDAO txtBookDAOImpl = new TxtBookDAO();
+    private final MovieDAO txtMovieDAOImpl = new TxtMovieDAO();
+    private final DiskDAO txtDiskDAOImpl = new TxtDiskDAO();
 
     //singleton
     private DAOFactory(){}
 
-
+    //геттеры
     public static DAOFactory getInstance(){
         return instance;
     }
 
-    public  NewsDAO getNewsDAO(){
-        return exelNewsImpl;
+    public BookDAO getBookDAO(){
+        return txtBookDAOImpl;
+    }
+    public MovieDAO getMovieDAO(){
+        return txtMovieDAOImpl;
+    }
+    public DiskDAO getDiskDAO(){
+        return txtDiskDAOImpl;
     }
 
 }
