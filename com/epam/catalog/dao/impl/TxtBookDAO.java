@@ -4,19 +4,19 @@ package com.epam.catalog.dao.impl;
 
 import com.epam.catalog.bean.Book;
 import com.epam.catalog.dao.BookDAO;
-import com.epam.catalog.database.DataBaseWriter;
+import com.epam.catalog.database.DataBaseTools;
 
 
 
 
 public class TxtBookDAO implements BookDAO{
 
-    DataBaseWriter dbWriter = DataBaseWriter.getInstance();
+    DataBaseTools dbTools = DataBaseTools.getInstance();
 
 
     @Override
     public void addBook(Book book) {
-      dbWriter.writeToDB("!b" + book.getTitle() + book.getAuthor() + book.getYear()+"\n");
+      dbTools.writeToDB("b$%$" + book.getTitle() + book.getAuthor() + book.getYear()+"\n");
         System.out.println(1);
     }
 

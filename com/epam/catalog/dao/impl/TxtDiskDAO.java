@@ -3,17 +3,17 @@ package com.epam.catalog.dao.impl;
 
 import com.epam.catalog.bean.Disk;
 import com.epam.catalog.dao.DiskDAO;
-import com.epam.catalog.database.DataBaseWriter;
+import com.epam.catalog.database.DataBaseTools;
 
 
 
 public class TxtDiskDAO implements DiskDAO{
 
-    DataBaseWriter dbWriter = DataBaseWriter.getInstance();
+    DataBaseTools dbTools = DataBaseTools.getInstance();
 
     @Override
     public void addDisk(Disk disk) {
-        dbWriter.writeToDB("!d" + disk.getTitle() + disk.getAuthor() + disk.getYear()+"\n");
+        dbTools.writeToDB("d$%$" + disk.getTitle() + disk.getAuthor() + disk.getYear()+"\n");
         System.out.println(2);
     }
 
