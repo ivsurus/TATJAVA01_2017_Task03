@@ -9,10 +9,12 @@ import com.epam.catalog.service.factory.ServiceFactory;
 public class AddBook implements Command {
     @Override
     public String execute(String request) {
+        String delimiter = "\\$%\\$";
         Book book = new Book();
-        book.setAuthor("Pushkin");
-        book.setTitle("Onegin");
-        book.setYear("1800");
+        String[] parameters = request.split(delimiter);
+        book.setTitle(parameters[1]);
+        book.setAuthor(parameters[2]);
+        book.setYear(parameters[3]);
         ServiceFactory serviceObjectFactory = ServiceFactory.getInstance();
         BookService bookService = serviceObjectFactory.getBookService();
         bookService.addBook(book);
