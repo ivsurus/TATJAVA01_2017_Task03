@@ -9,6 +9,10 @@ import java.io.InputStreamReader;
 
 public class ConsoleMenu {
 
+
+    private final String MESSAGE_1 = "Enter a command: (add find)";
+    private final String MESSAGE_2 = "Enter a category: (book disk movie)";
+
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private StringBuilder builder = new StringBuilder();
     private Controller controller = new Controller();
@@ -23,12 +27,10 @@ public class ConsoleMenu {
     public String readUserTask(){
         final String dilimeter = "_";
         final String paramDilimeter = "$%$";
-        final String Message1 = "Enter a command: (add find)";
-        System.out.println(Message1);
+        System.out.println(MESSAGE_1);
         builder.append(readUserInput());
         builder.append(dilimeter);
-        final String Message2 = "Enter a category: (book disk movie)";
-        System.out.println(Message2);
+        System.out.println(MESSAGE_2);
         builder.append(readUserInput());
         builder.append(paramDilimeter);
         return builder.toString();

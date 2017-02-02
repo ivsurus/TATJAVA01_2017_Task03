@@ -14,17 +14,20 @@ import com.epam.catalog.service.BookService;
 
 public class BookServiceImpl implements BookService {
 
+
+
     @Override
     public void addBook(Book book) {
         DAOFactory daoObjectFactory = DAOFactory.getInstance();
         BookDAO bookDAO = daoObjectFactory.getBookDAO();
         bookDAO.addBook(book);
-
     }
 
     @Override
     public void findBook(Book book) {
-
+        DAOFactory daoObjectFactory = DAOFactory.getInstance();
+        BookDAO bookDAO = daoObjectFactory.getBookDAO();
+        bookDAO.findBook(book);
     }
 
 

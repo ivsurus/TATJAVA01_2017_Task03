@@ -12,7 +12,7 @@ final public class CommandProvider {
 
     private final Map<CommandName, Command> repository = new HashMap<>();
 
-    //конструктор
+    //конструктор, создаем нужную реализацию интерфеса исходя из команды
     CommandProvider() {
         repository.put(CommandName.ADD_BOOK, new AddBook());
         repository.put(CommandName.FIND_BOOK, new FindBook());

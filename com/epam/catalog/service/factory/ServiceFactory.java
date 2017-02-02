@@ -14,7 +14,7 @@ import com.epam.catalog.service.impl.MovieServiceImpl;
  конкретную реализацию. Вторая – не создавать каждый раз новые объекты типа CatalogServiceImpl, т.к. многократное
  создания этих объектов является грубой ошибкой.*/
 
-/*Слой Service обращаясь к DAO использует только интерфейсную его часть, и не перегрузен
+/*Слой Service обращаясь к DAO использует только интерфейсную его часть, и не перегружен
 знанием конкретной реализации, используемой при доступе к данным.*/
 
 
@@ -22,7 +22,7 @@ public final class ServiceFactory {
 
     private static final ServiceFactory instance = new ServiceFactory();
 
-
+    //эти объекты многократно создавать тоже нельзя
     private final BookService bookService = new BookServiceImpl();
     private final DiskService diskService = new DiskServiceImpl();
     private final MovieService movieService = new MovieServiceImpl();
