@@ -2,6 +2,9 @@ package com.epam.catalog.bean;
 
 
 public class Entity {
+
+    public Entity(){}
+
     private CategoryName category;
     private String author;
     private String year;

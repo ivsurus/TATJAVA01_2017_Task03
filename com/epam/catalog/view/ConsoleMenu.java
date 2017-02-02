@@ -29,6 +29,7 @@ public class ConsoleMenu {
 
         controller.executeTask(readUserTask());
         controller.executeTask(readUserTask());
+        controller.executeTask(readUserTask());
     }
 
 
