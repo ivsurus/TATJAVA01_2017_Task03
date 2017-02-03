@@ -49,18 +49,32 @@ public class BookServiceImpl implements BookService {
     public void parse(String response){
        /* Matcher matcher = Pattern.compile("[A-Za-zА-Яа-я0-9Ёё-]{1,150}").matcher(fml_name_part);
         return matcher.matches();*/
-    }
-    String identifierPattern = "[bmd]{1,1}";
+
+        String identifierPattern = "[bmd]{1,1}";
         String titlePattern = "";
         String authorPattern = "[A-Za-zА-Яа-яЁё-]{1,20}[ ]{0,1}[A-Za-zА-Яа-яЁё-]{0,20}";
         String yearPattern = "^[12][0-9]{3}$"; //Years from 1000 to 2999
 
-    String delimiter = "\\$%\\$";
+        String delimiter = "\\$%\\$";
+
         String[] parameters = response.split(delimiter);
         String identifier = parameters[0];
         String title = parameters[1];
         String author = parameters[2];
         String year = parameters[3];
+
+        //передаем на валидацию данные
+        //создаем здесь бин
+        //добавляем бин
+    }
+
+    public boolean validateParameters (String identifier,String title,String author, String year){
+        String identifierPattern = "[bmd]{1,1}";
+        String titlePattern = "^[A-Za-z0-9\\s\\-_,\\.;:()]+$";  //вряд ли нужно любой символ кроме пробела от нуля до 100
+        String authorPattern = "[A-Za-zА-Яа-яЁё-]{1,20}[ ]{0,1}[A-Za-zА-Яа-яЁё-]{0,20}";
+        String yearPattern = "^[12][0-9]{3}$"; //Years from 1000 to 2999
+        return identifier.matches(identifierPattern) && title.matches(titlePattern) &&
+                  author.matches(authorPattern)&& year.matches(yearPattern);
     }
 
 
