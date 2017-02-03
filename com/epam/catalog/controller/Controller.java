@@ -9,7 +9,7 @@ public final class Controller {
 
     private final CommandProvider provider = new CommandProvider();
 
-    private final String  paramDelimeter = "$%$";
+    private final String paramDelimiter = "$%$";
 
     /*данные на слое Controller будут приходить в виде форматированной строки.
     Ответ клиенту Контроллер также будет осуществлять в виде форматированной строки*/
@@ -20,7 +20,7 @@ public final class Controller {
         Command executionCommand;
         //наша форматированная строка, первое слово до разделителя - имя команды - (ADD or FIND)
         //вид форматированной строки: FIND_BOOK$%$
-        commandName = request.substring(0, request.indexOf(paramDelimeter));
+        commandName = request.substring(0, request.indexOf(paramDelimiter));
         //передаем команду в провайдер add find
         executionCommand = provider.getCommand(commandName);
         String response;

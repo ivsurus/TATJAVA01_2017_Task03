@@ -3,7 +3,7 @@ package com.epam.catalog.dao.impl;
 
 import com.epam.catalog.bean.Movie;
 import com.epam.catalog.dao.MovieDAO;
-import com.epam.catalog.database.DataBaseTools;
+import com.epam.catalog.dao.tools.DataBaseTools;
 
 //реализация интерфейсов для слоя DAO
 public class TxtMovieDAO implements MovieDAO {

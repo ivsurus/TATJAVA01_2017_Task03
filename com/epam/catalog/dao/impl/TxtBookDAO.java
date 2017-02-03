@@ -4,24 +4,29 @@ package com.epam.catalog.dao.impl;
 
 import com.epam.catalog.bean.Book;
 import com.epam.catalog.dao.BookDAO;
-import com.epam.catalog.database.DataBaseTools;
+import com.epam.catalog.dao.tools.DataBaseTools;
 
 
+import java.util.Set;
 
 
-public class TxtBookDAO implements BookDAO{
+public class TxtBookDAO implements BookDAO {
 
-    DataBaseTools dbTools = DataBaseTools.getInstance();
-
+    private DataBaseTools dbTools = DataBaseTools.getInstance();
+    private final char IDENTIFIER = 'b';
 
     @Override
     public void addBook(Book book) {
-      dbTools.writeToDB("b$%$" + book.getTitle() + book.getAuthor() + book.getYear()+"\n");
+        dbTools.writeToDB("b$%$" + book.getTitle() + book.getAuthor() + book.getYear() + "\n");
         System.out.println(1);
     }
 
     @Override
-    public void findBook(Book book) {
-
+    public Set findBook(Book book) {
+    return dbTools.delUnnecessaryData(dbTools.readFromDB(),IDENTIFIER);
     }
+
+
+
 }
+

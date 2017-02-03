@@ -1,4 +1,4 @@
-package com.epam.catalog.bean;
+package com.epam.catalog.bean.category;
 
 
 public enum CategoryName {

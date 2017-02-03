@@ -1,14 +1,13 @@
-package com.epam.catalog.database;
+package com.epam.catalog.dao.tools;
 
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class DataBaseTools {
 
-   // private final String PATH = "C:\\Users\\Ivan_Surus\\IdeaProjects\\Task3\\src\\com\\epam\\catalog\\database\\dataBase2.txt";
-    private final String PATH = "D:\\Сурус\\JAVA\\Task3\\src\\com\\epam\\catalog\\database\\dataBase2.txt";
+    private final String PATH = "C:\\Users\\Ivan_Surus\\IdeaProjects\\Task3\\src\\dataBase.txt";
+  //  private final String PATH = "D:\\Сурус\\JAVA\\Task3\\src\\com\\epam\\catalog\\database\\dataBase.txt";
     private File file = new File(PATH);
     private BufferedWriter writer;
     private BufferedReader reader;
@@ -30,20 +29,32 @@ public class DataBaseTools {
             e.printStackTrace();
         }
     }
-    public List readFromDB(){
-        List<String> list = new ArrayList<>();
+
+
+    public Set readFromDB(){
+        Set<String> set = new HashSet<>();
         try {
             reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             String string;
             while ((string = reader.readLine()) != null) {
-                list.add(string);
+                set.add(string);
             }
             reader.close();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-    return list;
+    return set;
+    }
+
+    public Set delUnnecessaryData(Set<String> set, char character){
+        Iterator<String> iterator = set.iterator();
+        while (iterator.hasNext()) {
+            if (!iterator.next().substring(0, 1).equals(character)) {
+                iterator.remove();
+            }
+        }
+        return set;
     }
 
 }

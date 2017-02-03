@@ -3,7 +3,7 @@ package com.epam.catalog.dao.impl;
 
 import com.epam.catalog.bean.Disk;
 import com.epam.catalog.dao.DiskDAO;
-import com.epam.catalog.database.DataBaseTools;
+import com.epam.catalog.dao.tools.DataBaseTools;
 
 
 
