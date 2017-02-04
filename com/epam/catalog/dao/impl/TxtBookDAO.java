@@ -22,11 +22,8 @@ public class TxtBookDAO implements BookDAO {
     }
 
     @Override
-    public Set findBook(Book book) {
+    public Set<String> findBook(String searchCriterion) {
     return dbTools.delUnnecessaryData(dbTools.readFromDB(),IDENTIFIER);
     }
-
-
-
 }
 

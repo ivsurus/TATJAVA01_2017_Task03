@@ -5,7 +5,7 @@ import com.epam.catalog.dao.BookDAO;
 import com.epam.catalog.dao.factory.DAOFactory;
 import com.epam.catalog.service.BookService;
 
-import java.util.Set;
+import java.util.*;
 
 // на сервисах будут создаваться бины после проверок строк как на вход так и на выход
 
@@ -20,66 +20,69 @@ public class BookServiceImpl implements BookService {
     DAOFactory daoObjectFactory = DAOFactory.getInstance();
     BookDAO bookDAO = daoObjectFactory.getBookDAO();
 
+    private final String IDENTIFIER_PATTERN = "[bmd]{1,1}";
+    private final String TITLE_PATTERN = "[A-Za-zА-Яа-яЁё-!?, ]{1,30}";
+    private final String AUTHOR_PATTERN = "[A-Za-zА-Яа-яЁё-]{1,20}[ ]{0,1}[A-Za-zА-Яа-яЁё-]{0,20}";
+    private final String YEAR_PATTERN = "^[12][0-9]{3}$"; //Years from 1000 to 2999
+    private final String DELIMITER = "\\$%\\$";
+    private String[] parameters;
+
+
     @Override
     public void addBook(Book book) {
         //проверить входные параметры на null
         //проверть входные параметры по паттернам
-
+        //создать книгу
         bookDAO.addBook(book);
-
     }
 
 
-    //получаем массив строк с книгами
-    //парсим строки, проверяем данные на валидность
-    //создаем коллекцию бинов
-    //коллекцию передаем контроллеру
-
     @Override
-    public void findBook(Book book) {
+    public Set<Book> findBook(String searchCriterion) {
        //проверим ненулевое поле на валидность
        // если валидно - передаем book если нет - исключение
         // можно отсортировать коллекцию с компораторм
-
         //set из строк с книгами
-        bookDAO.findBook(book);
+        Set<Book> booksForUser = new HashSet<>();
+        Set<String> books = bookDAO.findBook(searchCriterion);
+        for (String bookStr: books){
+           boolean parmametersAreValid = validateParameters(parseDataBaseResponse(bookStr));
+            if (parmametersAreValid){
+               booksForUser.add(createBook());
+            }
+        }
+        return booksForUser;
+   }
 
+    //инициализируем сущность (книгу)
+    private Book createBook(){
+        Book book = new Book();
+        book.setAuthor(parameters[1]);
+        book.setTitle(parameters[2]);
+        book.setYear(parameters[3]);
+        return book;
     }
 
-    public void parse(String response){
-       /* Matcher matcher = Pattern.compile("[A-Za-zА-Яа-я0-9Ёё-]{1,150}").matcher(fml_name_part);
-        return matcher.matches();*/
-
-        String identifierPattern = "[bmd]{1,1}";
-        String titlePattern = "";
-        String authorPattern = "[A-Za-zА-Яа-яЁё-]{1,20}[ ]{0,1}[A-Za-zА-Яа-яЁё-]{0,20}";
-        String yearPattern = "^[12][0-9]{3}$"; //Years from 1000 to 2999
-
-        String delimiter = "\\$%\\$";
-
-        String[] parameters = response.split(delimiter);
-        String identifier = parameters[0];
-        String title = parameters[1];
-        String author = parameters[2];
-        String year = parameters[3];
-
-        //передаем на валидацию данные
-        //создаем здесь бин
-        //добавляем бин
+    //одна книга
+    //парсим одну строчку из базы данных на парметры, добавляем параметры как значения и паттерны как ключи
+    private Map<String,String> parseDataBaseResponse(String dataBaseResponse){
+        Map<String,String> map = new HashMap<>();
+        parameters = dataBaseResponse.split(DELIMITER);
+        map.put(IDENTIFIER_PATTERN,parameters[0]);
+        map.put(TITLE_PATTERN,parameters[1]);
+        map.put(AUTHOR_PATTERN,parameters[2]);
+        map.put(YEAR_PATTERN,parameters[3]);
+        return map;
     }
 
-    public boolean validateParameters (String identifier,String title,String author, String year){
-        String identifierPattern = "[bmd]{1,1}";
-        String titlePattern = "^[A-Za-z0-9\\s\\-_,\\.;:()]+$";  //вряд ли нужно любой символ кроме пробела от нуля до 100
-        String authorPattern = "[A-Za-zА-Яа-яЁё-]{1,20}[ ]{0,1}[A-Za-zА-Яа-яЁё-]{0,20}";
-        String yearPattern = "^[12][0-9]{3}$"; //Years from 1000 to 2999
-        return identifier.matches(identifierPattern) && title.matches(titlePattern) &&
-                  author.matches(authorPattern)&& year.matches(yearPattern);
+    //получаем проверем все параметры для одной книги по паттернам
+    private boolean validateParameters (Map map){
+        Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, String> pair = iterator.next();
+            if (!pair.getValue().matches(pair.getKey()))
+            return false;
+        }
+        return true;
     }
-
-
-
-
-
-
 }
