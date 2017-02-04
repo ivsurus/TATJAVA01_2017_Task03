@@ -36,7 +36,9 @@ public class BookServiceImpl implements BookService {
         bookDAO.addBook(book);
     }
 
-
+//провепока возвращшает просто все книги с проверенными параметрами
+    //нужно сделать чтобы он добпвлял в сет книги только с нужными параметрами
+    //по возможности сделать сортировку по этим параметрам
     @Override
     public Set<Book> findBook(String searchCriterion) {
        //проверим ненулевое поле на валидность

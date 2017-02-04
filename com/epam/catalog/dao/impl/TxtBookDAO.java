@@ -12,12 +12,14 @@ import java.util.Set;
 
 public class TxtBookDAO implements BookDAO {
 
+
     private DataBaseTools dbTools = DataBaseTools.getInstance();
     private final char IDENTIFIER = 'b';
+    private final String DELIMITER = "$%$";
 
     @Override
     public void addBook(Book book) {
-        dbTools.writeToDB("b$%$" + book.getTitle() + book.getAuthor() + book.getYear() + "\n");
+        dbTools.writeToDB(IDENTIFIER+DELIMITER+book.getTitle()+DELIMITER+book.getAuthor()+DELIMITER+book.getYear()+"\n");
         System.out.println(1);
     }
 

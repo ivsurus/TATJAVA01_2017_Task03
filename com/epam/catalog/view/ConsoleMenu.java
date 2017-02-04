@@ -26,6 +26,7 @@ public class ConsoleMenu {
     //чтение выбранного пользователем пункта консольного меню
 
     public void start(){
+
         controller.executeTask(readUserTask());
     }
 

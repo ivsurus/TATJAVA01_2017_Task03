@@ -16,15 +16,15 @@ public class FindBook implements Command {
     @Override
     public String execute(String request) {
         //использовать хитрый парсинг с регуляркой допустим помечаем нужный параметр спец символ
-        String delimiter = "\\$%\\$";
-        Book book = new Book();
-        String[] parameters = request.split(delimiter);
-        book.setTitle(parameters[1]);
-        book.setAuthor(parameters[2]);
-        book.setYear(parameters[3]);
+       // String delimiter = "\\$%\\$";
+        //Book book = new Book();
+//        String[] parameters = request.split(delimiter);
+//        book.setTitle(parameters[1]);
+//        book.setAuthor(parameters[2]);
+//        book.setYear(parameters[3]);
         ServiceFactory serviceObjectFactory = ServiceFactory.getInstance();
         BookService bookService = serviceObjectFactory.getBookService();
-        bookService.findBook(book);
+        bookService.findBook(request);
         return null;
     }
 }
