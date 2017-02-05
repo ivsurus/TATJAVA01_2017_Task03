@@ -40,11 +40,12 @@ public class BookServiceImpl implements BookService {
     //нужно сделать чтобы он добпвлял в сет книги только с нужными параметрами
     //по возможности сделать сортировку по этим параметрам
     @Override
-    public Set<Book> findBook(String searchCriterion) {
+    public Set<Book> findBook(String request) {
        //проверим ненулевое поле на валидность
        // если валидно - передаем book если нет - исключение
         // можно отсортировать коллекцию с компораторм
         //set из строк с книгами
+
         Set<Book> booksForUser = new HashSet<>();
         Set<String> books = bookDAO.findBook(searchCriterion);
         for (String bookStr: books){
@@ -55,6 +56,20 @@ public class BookServiceImpl implements BookService {
         }
         return booksForUser;
    }
+
+    private String findSearchCriterion(String request){
+        String searchCriterion;
+        Map<String, String> map = parseDataBaseResponse(request);
+        Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, String> pair = iterator.next();
+            if (!pair.getValue().equals("null")){
+            }
+        }
+
+        return searchCriterion;
+    }
+
 
     //инициализируем сущность (книгу)
     private Book createBook(){

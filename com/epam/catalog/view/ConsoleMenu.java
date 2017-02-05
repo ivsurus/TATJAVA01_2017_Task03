@@ -30,6 +30,12 @@ public class ConsoleMenu {
         controller.executeTask(readUserTask());
     }
 
+    /*add_book$%$title$%$author$%$year$%$
+      find_book$%$title$%$null$%$null$%$
+      find_book$%$null$%$author$%$null$%$
+      find_book$%$null$%$null$%$year$%$
+    выаол*/
+
 
 
     public String readUserTask(){
