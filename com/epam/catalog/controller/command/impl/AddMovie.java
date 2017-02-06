@@ -3,7 +3,7 @@ package com.epam.catalog.controller.command.impl;
 
 import com.epam.catalog.bean.Movie;
 import com.epam.catalog.controller.command.Command;
-import com.epam.catalog.service.MovieService;
+import com.epam.catalog.service.EntityService;
 import com.epam.catalog.service.factory.ServiceFactory;
 
 public class AddMovie implements Command {
@@ -16,8 +16,8 @@ public class AddMovie implements Command {
         movie.setAuthor(parameters[2]);
         movie.setYear(parameters[3]);
         ServiceFactory serviceObjectFactory = ServiceFactory.getInstance();
-        MovieService movieService = serviceObjectFactory.getMovieService();
-        movieService.addMovie(movie);
+        EntityService<Movie> movieService = serviceObjectFactory.getMovieService();
+        movieService.addEntity(movie);
         return null;
     }
 }

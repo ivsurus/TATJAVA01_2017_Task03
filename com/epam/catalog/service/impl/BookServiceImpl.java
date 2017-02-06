@@ -3,7 +3,7 @@ package com.epam.catalog.service.impl;
 import com.epam.catalog.bean.Book;
 import com.epam.catalog.dao.EntityDAO;
 import com.epam.catalog.dao.factory.DAOFactory;
-import com.epam.catalog.service.BookService;
+import com.epam.catalog.service.EntityService;
 
 import java.util.*;
 
@@ -14,7 +14,7 @@ import java.util.*;
 /*!!! Каждый открытый метод реализации слоя сервисов имеет обязанность проверять входящие параметры
 (кто бы и где бы до него это не делал)!*/
 
-public class BookServiceImpl implements BookService {
+public class BookServiceImpl implements EntityService<Book> {
 
 
     DAOFactory daoObjectFactory = DAOFactory.getInstance();
@@ -29,7 +29,7 @@ public class BookServiceImpl implements BookService {
 
 
     @Override
-    public void addBook(Book book) {
+    public void addEntity(Book book) {
         //проверить входные параметры на null
         //проверть входные параметры по паттернам
         //создать книгу
@@ -39,8 +39,9 @@ public class BookServiceImpl implements BookService {
 //провепока возвращшает просто все книги с проверенными параметрами
     //нужно сделать чтобы он добпвлял в сет книги только с нужными параметрами
     //по возможности сделать сортировку по этим параметрам
+
     @Override
-    public Set<Book> findBook(String request) {
+    public Set<Book> findEntity(String request) {
        //проверим ненулевое поле на валидность
        // если валидно - передаем book если нет - исключение
         // можно отсортировать коллекцию с компораторм

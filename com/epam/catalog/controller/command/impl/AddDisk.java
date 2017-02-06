@@ -3,7 +3,7 @@ package com.epam.catalog.controller.command.impl;
 
 import com.epam.catalog.bean.Disk;
 import com.epam.catalog.controller.command.Command;
-import com.epam.catalog.service.DiskService;
+import com.epam.catalog.service.EntityService;
 import com.epam.catalog.service.factory.ServiceFactory;
 
 public class AddDisk implements Command{
@@ -16,8 +16,8 @@ public class AddDisk implements Command{
         disk.setAuthor(parameters[2]);
         disk.setYear(parameters[3]);
         ServiceFactory serviceObjectFactory = ServiceFactory.getInstance();
-        DiskService diskService = serviceObjectFactory.getDiskService();
-        diskService.addDisk(disk);
+        EntityService<Disk> diskService = serviceObjectFactory.getDiskService();
+        diskService.addEntity(disk);
         return null;
     }
 }

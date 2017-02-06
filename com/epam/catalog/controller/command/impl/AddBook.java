@@ -2,7 +2,7 @@ package com.epam.catalog.controller.command.impl;
 
 import com.epam.catalog.bean.Book;
 import com.epam.catalog.controller.command.Command;
-import com.epam.catalog.service.BookService;
+import com.epam.catalog.service.EntityService;
 import com.epam.catalog.service.factory.ServiceFactory;
 
 
@@ -17,8 +17,8 @@ public class AddBook implements Command {
         book.setAuthor(parameters[2]);
         book.setYear(parameters[3]);
         ServiceFactory serviceObjectFactory = ServiceFactory.getInstance();
-        BookService bookService = serviceObjectFactory.getBookService();
-        bookService.addBook(book);
+        EntityService<Book> bookService = serviceObjectFactory.getBookService();
+        bookService.addEntity(book);
         return null;
     }
 }

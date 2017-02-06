@@ -1,21 +1,26 @@
 package com.epam.catalog.service.impl;
 
 
+import com.epam.catalog.bean.Book;
 import com.epam.catalog.bean.Disk;
 import com.epam.catalog.dao.EntityDAO;
 import com.epam.catalog.dao.factory.DAOFactory;
-import com.epam.catalog.service.DiskService;
+import com.epam.catalog.service.EntityService;
 
-public class DiskServiceImpl implements DiskService {
+import java.util.Set;
+
+public class DiskServiceImpl implements EntityService<Disk> {
     @Override
-    public void addDisk(Disk disk) {
+    public void addEntity(Disk disk) {
         DAOFactory daoObjectFactory = DAOFactory.getInstance();
         EntityDAO<Disk> diskDAO = daoObjectFactory.getDiskDAO();
         diskDAO.addEntity(disk);
     }
 
     @Override
-    public void findDisk(Disk disk) {
-
+    public Set<Book> findEntity(String searchCriterion) {
+        return null;
     }
+
+
 }

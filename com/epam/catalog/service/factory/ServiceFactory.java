@@ -1,9 +1,10 @@
 package com.epam.catalog.service.factory;
 
 
-import com.epam.catalog.service.BookService;
-import com.epam.catalog.service.DiskService;
-import com.epam.catalog.service.MovieService;
+import com.epam.catalog.bean.Book;
+import com.epam.catalog.bean.Disk;
+import com.epam.catalog.bean.Movie;
+import com.epam.catalog.service.EntityService;
 import com.epam.catalog.service.impl.BookServiceImpl;
 import com.epam.catalog.service.impl.DiskServiceImpl;
 import com.epam.catalog.service.impl.MovieServiceImpl;
@@ -23,9 +24,9 @@ public final class ServiceFactory {
     private static final ServiceFactory instance = new ServiceFactory();
 
     //эти объекты многократно создавать тоже нельзя
-    private final BookService bookService = new BookServiceImpl();
-    private final DiskService diskService = new DiskServiceImpl();
-    private final MovieService movieService = new MovieServiceImpl();
+    private final EntityService<Book> bookService = new BookServiceImpl();
+    private final EntityService<Disk> diskService = new DiskServiceImpl();
+    private final EntityService<Movie> movieService = new MovieServiceImpl();
 
     //singleton
     private ServiceFactory(){}
@@ -36,13 +37,13 @@ public final class ServiceFactory {
     }
 
 
-    public BookService getBookService(){
+    public EntityService<Book> getBookService(){
         return bookService;
     }
-    public DiskService getDiskService(){
+    public EntityService<Disk> getDiskService(){
         return diskService;
     }
-    public MovieService getMovieService(){
+    public EntityService<Movie> getMovieService(){
         return movieService;
     }
 
