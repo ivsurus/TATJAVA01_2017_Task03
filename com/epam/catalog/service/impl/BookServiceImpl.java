@@ -46,6 +46,7 @@ public class BookServiceImpl implements BookService {
         // можно отсортировать коллекцию с компораторм
         //set из строк с книгами
 
+        String searchCriterion=findSearchCriterion(request);
         Set<Book> booksForUser = new HashSet<>();
         Set<String> books = bookDAO.findBook(searchCriterion);
         for (String bookStr: books){
@@ -58,12 +59,13 @@ public class BookServiceImpl implements BookService {
    }
 
     private String findSearchCriterion(String request){
-        String searchCriterion;
+        String searchCriterion = "";
         Map<String, String> map = parseDataBaseResponse(request);
         Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<String, String> pair = iterator.next();
             if (!pair.getValue().equals("null")){
+                searchCriterion=pair.getValue();
             }
         }
 
