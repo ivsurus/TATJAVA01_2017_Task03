@@ -1,7 +1,7 @@
 package com.epam.catalog.service.impl;
 
 import com.epam.catalog.bean.Book;
-import com.epam.catalog.dao.BookDAO;
+import com.epam.catalog.dao.EntityDAO;
 import com.epam.catalog.dao.factory.DAOFactory;
 import com.epam.catalog.service.BookService;
 
@@ -18,7 +18,7 @@ public class BookServiceImpl implements BookService {
 
 
     DAOFactory daoObjectFactory = DAOFactory.getInstance();
-    BookDAO bookDAO = daoObjectFactory.getBookDAO();
+    EntityDAO<Book> bookDAO = daoObjectFactory.getBookDAO();
 
     private final String IDENTIFIER_PATTERN = "[bmd]{1,1}";
     private final String TITLE_PATTERN = "[A-Za-zА-Яа-яЁё-!?, ]{1,30}";
@@ -33,7 +33,7 @@ public class BookServiceImpl implements BookService {
         //проверить входные параметры на null
         //проверть входные параметры по паттернам
         //создать книгу
-        bookDAO.addBook(book);
+        bookDAO.addEntity(book);
     }
 
 //провепока возвращшает просто все книги с проверенными параметрами
@@ -48,7 +48,7 @@ public class BookServiceImpl implements BookService {
 
         String searchCriterion=findSearchCriterion(request);
         Set<Book> booksForUser = new HashSet<>();
-        Set<String> books = bookDAO.findBook(searchCriterion);
+        Set<String> books = bookDAO.findEntity(searchCriterion);
         for (String bookStr: books){
            boolean parmametersAreValid = validateParameters(parseDataBaseResponse(bookStr));
             if (parmametersAreValid){

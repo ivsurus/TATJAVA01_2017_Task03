@@ -1,8 +1,9 @@
 package com.epam.catalog.dao.factory;
 
-import com.epam.catalog.dao.BookDAO;
-import com.epam.catalog.dao.DiskDAO;
-import com.epam.catalog.dao.MovieDAO;
+import com.epam.catalog.bean.Book;
+import com.epam.catalog.bean.Disk;
+import com.epam.catalog.bean.Movie;
+import com.epam.catalog.dao.EntityDAO;
 import com.epam.catalog.dao.impl.TxtBookDAO;
 import com.epam.catalog.dao.impl.TxtDiskDAO;
 import com.epam.catalog.dao.impl.TxtMovieDAO;
@@ -25,9 +26,9 @@ public final class DAOFactory {
 
     private static final DAOFactory instance = new DAOFactory();
 
-    private final BookDAO txtBookDAOImpl = new TxtBookDAO();
-    private final MovieDAO txtMovieDAOImpl = new TxtMovieDAO();
-    private final DiskDAO txtDiskDAOImpl = new TxtDiskDAO();
+    private final EntityDAO<Book> txtBookDAOImpl = new TxtBookDAO();
+    private final EntityDAO<Movie> txtMovieDAOImpl = new TxtMovieDAO();
+    private final EntityDAO<Disk> txtDiskDAOImpl = new TxtDiskDAO();
 
     //singleton
     private DAOFactory(){}
@@ -37,13 +38,13 @@ public final class DAOFactory {
         return instance;
     }
 
-    public BookDAO getBookDAO(){
+    public EntityDAO<Book> getBookDAO(){
         return txtBookDAOImpl;
     }
-    public MovieDAO getMovieDAO(){
+    public EntityDAO<Movie> getMovieDAO(){
         return txtMovieDAOImpl;
     }
-    public DiskDAO getDiskDAO(){
+    public EntityDAO<Disk> getDiskDAO(){
         return txtDiskDAOImpl;
     }
 

@@ -3,14 +3,14 @@ package com.epam.catalog.dao.impl;
 //реализация интерфейсов для слоя DAO
 
 import com.epam.catalog.bean.Book;
-import com.epam.catalog.dao.BookDAO;
+import com.epam.catalog.dao.EntityDAO;
 import com.epam.catalog.dao.tools.DataBaseTools;
 
 
 import java.util.Set;
 
 
-public class TxtBookDAO implements BookDAO {
+public class TxtBookDAO implements EntityDAO<Book> {
 
 
     private DataBaseTools dbTools = DataBaseTools.getInstance();
@@ -18,13 +18,13 @@ public class TxtBookDAO implements BookDAO {
     private final String DELIMITER = "$%$";
 
     @Override
-    public void addBook(Book book) {
+    public void addEntity(Book book) {
         dbTools.writeToDB(IDENTIFIER+DELIMITER+book.getTitle()+DELIMITER+book.getAuthor()+DELIMITER+book.getYear()+"\n");
         System.out.println(1);
     }
 
     @Override
-    public Set<String> findBook(String searchCriterion) {
+    public Set<String> findEntity(String searchCriterion) {
     return dbTools.delUnnecessaryData(dbTools.readFromDB(),IDENTIFIER);
     }
 }
