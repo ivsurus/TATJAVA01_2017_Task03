@@ -11,6 +11,7 @@ public class AddBook implements Command {
 
     private final String DELIMITER = "\\$%\\$";
     private final String SUCCESS = "The book was successfully added to the catalog";
+    private final String FAILURE = "Service is currently not available";
 
     @Override
     public String execute(String request) {
@@ -24,7 +25,7 @@ public class AddBook implements Command {
         try{
             bookService.addEntity(book);
         } catch (ServiceException e){
-
+            return FAILURE;
         }
         return SUCCESS;
     }

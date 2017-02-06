@@ -19,18 +19,19 @@ public class FindBook implements Command {
     private final String TITLE = "Title: ";
     private final String AUTHOR = "Author: ";
     private final String YEAR = "Year: ";
+    private final String FAILURE = "Service is currently not available";
 
     @Override
     public String execute(String request) {
         try{
           books =  bookService.findEntity(request);
         } catch (ServiceException e){
-
+            return FAILURE;
         }
         return createResponseForUser(books);
     }
 
-    //тут сделать сортировку (здесь по году)
+
     private String createResponseForUser(Set<Book> books){
         for (Book book: books){
             builder.append(TITLE + book.getTitle()+"\n");

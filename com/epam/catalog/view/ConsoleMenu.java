@@ -32,7 +32,7 @@ public class ConsoleMenu {
 
     public void start(){
 
-       // System.out.println(controller.executeTask(readUserEntityToAdd()));
+      //  System.out.println(controller.executeTask(readUserEntityToAdd()));
         System.out.println(controller.executeTask(readUserEntityToFind()));
     }
 
@@ -78,7 +78,7 @@ public class ConsoleMenu {
         System.out.println(MESSAGE_6);
         builder.append(readUserInput());
         builder.append(PARAM_DELIMITER);
-        builder.append(TITLE);
+        builder.append(YEAR);
         return builder.toString();
     }
 

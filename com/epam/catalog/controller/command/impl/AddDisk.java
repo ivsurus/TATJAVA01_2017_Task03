@@ -11,7 +11,7 @@ public class AddDisk implements Command{
 
     private final String DELIMITER = "\\$%\\$";
     private final String SUCCESS = "The disk was successfully added to the catalog";
-
+    private final String FAILURE = "Service is currently not available";
     @Override
     public String execute(String request) {
         Disk disk = new Disk();
@@ -24,7 +24,7 @@ public class AddDisk implements Command{
         try{
             diskService.addEntity(disk);
         } catch (ServiceException e){
-
+            return FAILURE;
         }
         return SUCCESS;
     }
