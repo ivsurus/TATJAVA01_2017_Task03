@@ -4,6 +4,7 @@ package com.epam.catalog.controller.command.impl;
 import com.epam.catalog.bean.Movie;
 import com.epam.catalog.controller.command.Command;
 import com.epam.catalog.service.EntityService;
+import com.epam.catalog.service.exeption.ServiceException;
 import com.epam.catalog.service.factory.ServiceFactory;
 
 public class AddMovie implements Command {
@@ -17,7 +18,12 @@ public class AddMovie implements Command {
         movie.setYear(parameters[3]);
         ServiceFactory serviceObjectFactory = ServiceFactory.getInstance();
         EntityService<Movie> movieService = serviceObjectFactory.getMovieService();
-        movieService.addEntity(movie);
+        try{
+            movieService.addEntity(movie);
+        } catch (ServiceException e){
+
+        }
+
         return null;
     }
 }

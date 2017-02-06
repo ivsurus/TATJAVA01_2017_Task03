@@ -3,6 +3,7 @@ package com.epam.catalog.controller.command.impl;
 import com.epam.catalog.bean.Book;
 import com.epam.catalog.controller.command.Command;
 import com.epam.catalog.service.EntityService;
+import com.epam.catalog.service.exeption.ServiceException;
 import com.epam.catalog.service.factory.ServiceFactory;
 
 
@@ -24,7 +25,12 @@ public class FindBook implements Command {
 //        book.setYear(parameters[3]);
         ServiceFactory serviceObjectFactory = ServiceFactory.getInstance();
         EntityService<Book> bookService = serviceObjectFactory.getBookService();
-        bookService.findEntity(request);
+        try{
+            bookService.findEntity(request);
+        } catch (ServiceException e){
+
+        }
+
         return null;
     }
 }

@@ -2,8 +2,10 @@ package com.epam.catalog.service.impl;
 
 import com.epam.catalog.bean.Book;
 import com.epam.catalog.dao.EntityDAO;
+import com.epam.catalog.dao.exeption.DAOException;
 import com.epam.catalog.dao.factory.DAOFactory;
 import com.epam.catalog.service.EntityService;
+import com.epam.catalog.service.exeption.ServiceException;
 
 import java.util.*;
 
@@ -29,11 +31,16 @@ public class BookServiceImpl implements EntityService<Book> {
 
 
     @Override
-    public void addEntity(Book book) {
+    public void addEntity(Book book) throws ServiceException {
         //проверить входные параметры на null
         //проверть входные параметры по паттернам
         //создать книгу
-        bookDAO.addEntity(book);
+
+        try {
+            bookDAO.addEntity(book);
+        } catch (DAOException e){
+            throw new ServiceException(e);
+        }
     }
 
 //провепока возвращшает просто все книги с проверенными параметрами
@@ -41,7 +48,7 @@ public class BookServiceImpl implements EntityService<Book> {
     //по возможности сделать сортировку по этим параметрам
 
     @Override
-    public Set<Book> findEntity(String request) {
+    public Set<Book> findEntity(String request) throws ServiceException {
        //проверим ненулевое поле на валидность
        // если валидно - передаем book если нет - исключение
         // можно отсортировать коллекцию с компораторм
@@ -49,12 +56,18 @@ public class BookServiceImpl implements EntityService<Book> {
 
         String searchCriterion=findSearchCriterion(request);
         Set<Book> booksForUser = new HashSet<>();
-        Set<String> books = bookDAO.findEntity(searchCriterion);
+        try{
+            Set<String> books = bookDAO.findEntity(searchCriterion);
+
+
         for (String bookStr: books){
            boolean parmametersAreValid = validateParameters(parseDataBaseResponse(bookStr));
             if (parmametersAreValid){
                booksForUser.add(createBook());
             }
+        }
+        }catch (DAOException e){
+            throw new ServiceException(e);
         }
         return booksForUser;
    }

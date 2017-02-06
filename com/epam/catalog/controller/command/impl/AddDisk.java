@@ -4,6 +4,7 @@ package com.epam.catalog.controller.command.impl;
 import com.epam.catalog.bean.Disk;
 import com.epam.catalog.controller.command.Command;
 import com.epam.catalog.service.EntityService;
+import com.epam.catalog.service.exeption.ServiceException;
 import com.epam.catalog.service.factory.ServiceFactory;
 
 public class AddDisk implements Command{
@@ -17,7 +18,12 @@ public class AddDisk implements Command{
         disk.setYear(parameters[3]);
         ServiceFactory serviceObjectFactory = ServiceFactory.getInstance();
         EntityService<Disk> diskService = serviceObjectFactory.getDiskService();
-        diskService.addEntity(disk);
+        try{
+            diskService.addEntity(disk);
+        } catch (ServiceException e){
+
+        }
+
         return null;
     }
 }

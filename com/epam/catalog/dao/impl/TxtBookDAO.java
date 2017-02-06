@@ -4,6 +4,7 @@ package com.epam.catalog.dao.impl;
 
 import com.epam.catalog.bean.Book;
 import com.epam.catalog.dao.EntityDAO;
+import com.epam.catalog.dao.exeption.DAOException;
 import com.epam.catalog.dao.tools.DataBaseTools;
 
 
@@ -18,13 +19,13 @@ public class TxtBookDAO implements EntityDAO<Book> {
     private final String DELIMITER = "$%$";
 
     @Override
-    public void addEntity(Book book) {
+    public void addEntity(Book book) throws DAOException {
         dbTools.writeToDB(IDENTIFIER+DELIMITER+book.getTitle()+DELIMITER+book.getAuthor()+DELIMITER+book.getYear()+"\n");
         System.out.println(1);
     }
 
     @Override
-    public Set<String> findEntity(String searchCriterion) {
+    public Set<String> findEntity(String searchCriterion) throws DAOException {
     return dbTools.delUnnecessaryData(dbTools.readFromDB(),IDENTIFIER);
     }
 }
