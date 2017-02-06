@@ -21,7 +21,7 @@ public class BookServiceImpl implements EntityService<Book> {
     private EntityDAO<Book> bookDAO = daoObjectFactory.getBookDAO();
 
     private final String IDENTIFIER_PATTERN = "[bmd]{1,1}";
-    private final String TITLE_PATTERN = "[A-Za-zА-Яа-яЁё-!?, ]{1,30}";
+    private final String TITLE_PATTERN = "[0-9A-Za-zА-Яа-яЁё]{1,30}";
     private final String AUTHOR_PATTERN = "[A-Za-zА-Яа-яЁё-]{1,20}[ ]{0,1}[A-Za-zА-Яа-яЁё-]{0,20}";
     private final String YEAR_PATTERN = "^[12][0-9]{3}$"; //Years from 1000 to 2999
     private final String DELIMITER = "\\$%\\$";
@@ -61,8 +61,9 @@ public class BookServiceImpl implements EntityService<Book> {
             Set<String> books = bookDAO.findEntity(searchCriterion);
 
         for (String bookStr: books){
-           boolean parmametersAreValid = validateParameters(parseDataBaseResponse(bookStr));
-            if (parmametersAreValid){
+            System.out.println("Количество циклов ");
+           boolean parametersAreValid = validateParameters(parseDataBaseResponse(bookStr));
+            if (parametersAreValid){
                booksForUser.add(createBook());
             }
         }

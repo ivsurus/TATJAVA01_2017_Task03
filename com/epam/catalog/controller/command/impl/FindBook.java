@@ -6,26 +6,39 @@ import com.epam.catalog.service.EntityService;
 import com.epam.catalog.service.exeption.ServiceException;
 import com.epam.catalog.service.factory.ServiceFactory;
 
+import java.util.Set;
+
 
 public class FindBook implements Command {
 
-    //пока ищем только одну книгу по title
-    //в строке request параметр для поиска записан, остальные параметры имеют специализированное значение
-    //при парсинге сделать - заполнить недостающие параметры для этого бина и верннуть его наверх
 
-    //если будет много чего возвращать то вернем коллекию бинов
+    private Set books;
+    private StringBuilder builder = new StringBuilder();
+    private ServiceFactory serviceObjectFactory = ServiceFactory.getInstance();
+    private EntityService<Book> bookService = serviceObjectFactory.getBookService();
+    private final String TITLE = "Title: ";
+    private final String AUTHOR = "Author: ";
+    private final String YEAR = "Year: ";
 
     @Override
     public String execute(String request) {
-        ServiceFactory serviceObjectFactory = ServiceFactory.getInstance();
-        EntityService<Book> bookService = serviceObjectFactory.getBookService();
-
         try{
-            bookService.findEntity(request);
+          books =  bookService.findEntity(request);
         } catch (ServiceException e){
 
         }
-
-        return null;
+        return createResponseForUser(books);
     }
+
+    //тут сделать сортировку (здесь по году)
+    private String createResponseForUser(Set<Book> books){
+        for (Book book: books){
+            builder.append(TITLE + book.getTitle()+"\n");
+            builder.append(AUTHOR + book.getAuthor()+"\n");
+            builder.append(YEAR + book.getYear()+"\n\n");
+        }
+        System.out.println(builder.toString());
+        return builder.toString();
+    }
+
 }

@@ -8,11 +8,14 @@ import com.epam.catalog.service.exeption.ServiceException;
 import com.epam.catalog.service.factory.ServiceFactory;
 
 public class AddMovie implements Command {
+
+    private final String DELIMITER = "\\$%\\$";
+    private final String SUCCESS = "The movie was successfully added to the catalog";
+
     @Override
     public String execute(String request) {
-        String delimiter = "\\$%\\$";
         Movie movie = new Movie();
-        String[] parameters = request.split(delimiter);
+        String[] parameters = request.split(DELIMITER);
         movie.setTitle(parameters[1]);
         movie.setAuthor(parameters[2]);
         movie.setYear(parameters[3]);
@@ -23,7 +26,6 @@ public class AddMovie implements Command {
         } catch (ServiceException e){
 
         }
-
-        return null;
+        return SUCCESS;
     }
 }

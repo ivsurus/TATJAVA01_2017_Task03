@@ -21,14 +21,10 @@ public class TxtBookDAO implements EntityDAO<Book> {
     @Override
     public void addEntity(Book book) throws DAOException {
         dbTools.writeToDB(IDENTIFIER+DELIMITER+book.getTitle()+DELIMITER+book.getAuthor()+DELIMITER+book.getYear()+"\n");
-        System.out.println(1);
     }
 
     @Override
     public Set<String> findEntity(String searchCriterion) throws DAOException {
-
-        System.out.println("я тут 2");
-        System.out.println("criterion " + searchCriterion);
         System.out.println(dbTools.delUnnecessaryData(dbTools.readFromDB(),IDENTIFIER).size());
         return dbTools.delUnnecessaryData(dbTools.readFromDB(),IDENTIFIER);
     }

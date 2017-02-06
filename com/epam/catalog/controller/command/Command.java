@@ -1,6 +1,8 @@
 package com.epam.catalog.controller.command;
 
 
+import java.util.Set;
+
 public interface Command {
-    public String execute(String request);
+    String execute(String request);
 }

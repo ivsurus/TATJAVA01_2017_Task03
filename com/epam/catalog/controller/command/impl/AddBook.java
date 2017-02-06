@@ -10,9 +10,9 @@ import com.epam.catalog.service.factory.ServiceFactory;
 public class AddBook implements Command {
 
     private final String DELIMITER = "\\$%\\$";
+    private final String SUCCESS = "The book was successfully added to the catalog";
 
     @Override
-    //может быть здесь передавать строку с параметрами а не обект???
     public String execute(String request) {
         Book book = new Book();
         String[] parameters = request.split(DELIMITER);
@@ -26,7 +26,6 @@ public class AddBook implements Command {
         } catch (ServiceException e){
 
         }
-
-        return null;
+        return SUCCESS;
     }
 }

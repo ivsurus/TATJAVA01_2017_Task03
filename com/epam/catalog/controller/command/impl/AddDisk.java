@@ -8,11 +8,14 @@ import com.epam.catalog.service.exeption.ServiceException;
 import com.epam.catalog.service.factory.ServiceFactory;
 
 public class AddDisk implements Command{
+
+    private final String DELIMITER = "\\$%\\$";
+    private final String SUCCESS = "The disk was successfully added to the catalog";
+
     @Override
     public String execute(String request) {
-        String delimiter = "\\$%\\$";
         Disk disk = new Disk();
-        String[] parameters = request.split(delimiter);
+        String[] parameters = request.split(DELIMITER);
         disk.setTitle(parameters[1]);
         disk.setAuthor(parameters[2]);
         disk.setYear(parameters[3]);
@@ -23,7 +26,6 @@ public class AddDisk implements Command{
         } catch (ServiceException e){
 
         }
-
-        return null;
+        return SUCCESS;
     }
 }

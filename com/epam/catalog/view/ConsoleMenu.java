@@ -28,8 +28,8 @@ public class ConsoleMenu {
 
     public void start(){
 
-       // controller.executeTask(readUserEntityToAdd());
-        controller.executeTask(readUserEntityToFind());
+        System.out.println(controller.executeTask(readUserEntityToAdd()));
+       // System.out.println(controller.executeTask(readUserEntityToFind()));
     }
 
     /*add_book$%$title$%$author$%$year$%$
