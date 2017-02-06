@@ -36,7 +36,7 @@ public class ConsoleMenu {
         System.out.println(controller.executeTask(readUserEntityToFind()));
     }
 
-    /*add_book$%$title$%$author$%$year$%$
+    /*add_book$%$$%$author$%$year$%$
       find_book$%$title$%$null$%$null$%$
       find_book$%$null$%$author$%$null$%$
       find_book$%$null$%$null$%$year$%$
