@@ -6,6 +6,7 @@ import com.epam.catalog.dao.EntityDAO;
 import com.epam.catalog.dao.exeption.DAOException;
 import com.epam.catalog.dao.tools.DataBaseTools;
 
+import java.io.IOException;
 import java.util.Set;
 
 //реализация интерфейсов для слоя DAO
@@ -17,13 +18,21 @@ public class TxtMovieDAO implements EntityDAO<Movie> {
 
     @Override
     public void addEntity(Movie movie) throws DAOException {
-        dbTools.writeToDB(IDENTIFIER+DELIMITER+movie.getTitle()+DELIMITER+movie.getAuthor()+DELIMITER+movie.getYear()+"\n");
-        System.out.println(3);
+        try {
+            dbTools.writeToDB(IDENTIFIER+DELIMITER+movie.getTitle()+DELIMITER+movie.getAuthor()
+                    +DELIMITER+movie.getYear()+"\n");
+        } catch (IOException e){
+            throw new DAOException(e);
+        }
     }
 
     @Override
     public Set<String> findEntity() throws DAOException{
-        return dbTools.delUnnecessaryData(dbTools.readFromDB(),IDENTIFIER);
+        try {
+            return dbTools.delUnnecessaryData(dbTools.readFromDB(), IDENTIFIER);
+        } catch (IOException e){
+            throw new DAOException(e);
+        }
     }
 }
 

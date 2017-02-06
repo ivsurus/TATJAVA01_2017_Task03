@@ -6,6 +6,7 @@ import com.epam.catalog.dao.EntityDAO;
 import com.epam.catalog.dao.exeption.DAOException;
 import com.epam.catalog.dao.tools.DataBaseTools;
 
+import java.io.IOException;
 import java.util.Set;
 
 
@@ -17,12 +18,20 @@ public class TxtDiskDAO implements EntityDAO<Disk>{
 
     @Override
     public void addEntity(Disk disk) throws DAOException {
-        dbTools.writeToDB(IDENTIFIER+DELIMITER+disk.getTitle()+DELIMITER+disk.getAuthor()+DELIMITER+disk.getYear()+"\n");
-        System.out.println(2);
+        try {
+            dbTools.writeToDB(IDENTIFIER+DELIMITER+disk.getTitle()+DELIMITER+disk.getAuthor()
+                    +DELIMITER+disk.getYear()+"\n");
+        } catch (IOException e){
+            throw new DAOException(e);
+        }
     }
 
     @Override
     public Set<String> findEntity() throws DAOException{
-        return dbTools.delUnnecessaryData(dbTools.readFromDB(),IDENTIFIER);
+        try {
+            return dbTools.delUnnecessaryData(dbTools.readFromDB(), IDENTIFIER);
+        } catch (IOException e){
+            throw new DAOException(e);
+        }
     }
 }

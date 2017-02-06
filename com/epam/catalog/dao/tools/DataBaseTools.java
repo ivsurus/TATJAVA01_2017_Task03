@@ -20,31 +20,22 @@ public class DataBaseTools {
         return instance;
     }
 
-    public void writeToDB(String param){
-        try {
+    public void writeToDB(String entityData) throws IOException{
             writer = new BufferedWriter(new FileWriter(file, true));
-            writer.write(param);
+            writer.write(entityData);
             writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 
-    public Set readFromDB(){
+    public Set readFromDB() throws IOException{
         Set<String> set = new HashSet<>();
-        try {
-            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-            String string;
-            while ((string = reader.readLine()) != null) {
-                set.add(string);
-            }
-            reader.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+        String string;
+        while ((string = reader.readLine()) != null) {
+            set.add(string);
         }
-    return set;
+        reader.close();
+        return set;
     }
 
     public Set delUnnecessaryData(Set<String> set, String identifier){
