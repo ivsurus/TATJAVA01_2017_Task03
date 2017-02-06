@@ -9,6 +9,4 @@ public class ServiceTools {
         return instance;
     }
 
-
-
 }

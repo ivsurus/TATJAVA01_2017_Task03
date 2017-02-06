@@ -44,7 +44,6 @@ public class DataBaseTools {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Размер прочитанного массива " + set.size());
     return set;
     }
 

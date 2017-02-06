@@ -22,7 +22,7 @@ public class TxtMovieDAO implements EntityDAO<Movie> {
     }
 
     @Override
-    public Set<String> findEntity(String searchCriterion) throws DAOException{
+    public Set<String> findEntity() throws DAOException{
         return dbTools.delUnnecessaryData(dbTools.readFromDB(),IDENTIFIER);
     }
 }

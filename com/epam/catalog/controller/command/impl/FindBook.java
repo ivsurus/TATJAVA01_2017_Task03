@@ -37,7 +37,6 @@ public class FindBook implements Command {
             builder.append(AUTHOR + book.getAuthor()+"\n");
             builder.append(YEAR + book.getYear()+"\n\n");
         }
-        System.out.println(builder.toString());
         return builder.toString();
     }
 

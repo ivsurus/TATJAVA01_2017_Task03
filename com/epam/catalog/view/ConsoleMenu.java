@@ -20,16 +20,20 @@ public class ConsoleMenu {
     private final String MESSAGE_6 = "Enter a criterion for a search:";
     private final String DELIMITER = "_";
     private final String PARAM_DELIMITER = "$%$";
+    private final String TITLE = "TITLE";
+    private final String AUTHOR = "AUTHOR";
+    private final String YEAR = "YEAR";
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private StringBuilder builder;
     private Controller controller = new Controller();
+
 
     //чтение выбранного пользователем пункта консольного меню
 
     public void start(){
 
-        System.out.println(controller.executeTask(readUserEntityToAdd()));
-       // System.out.println(controller.executeTask(readUserEntityToFind()));
+       // System.out.println(controller.executeTask(readUserEntityToAdd()));
+        System.out.println(controller.executeTask(readUserEntityToFind()));
     }
 
     /*add_book$%$title$%$author$%$year$%$
@@ -73,6 +77,8 @@ public class ConsoleMenu {
         builder.append(PARAM_DELIMITER);
         System.out.println(MESSAGE_6);
         builder.append(readUserInput());
+        builder.append(PARAM_DELIMITER);
+        builder.append(TITLE);
         return builder.toString();
     }
 

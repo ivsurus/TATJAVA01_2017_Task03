@@ -24,9 +24,10 @@ public class TxtBookDAO implements EntityDAO<Book> {
     }
 
     @Override
-    public Set<String> findEntity(String searchCriterion) throws DAOException {
-        System.out.println(dbTools.delUnnecessaryData(dbTools.readFromDB(),IDENTIFIER).size());
+    public Set<String> findEntity() throws DAOException {
         return dbTools.delUnnecessaryData(dbTools.readFromDB(),IDENTIFIER);
     }
+
+
 }
 

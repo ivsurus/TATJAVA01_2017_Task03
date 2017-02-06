@@ -11,5 +11,5 @@ import java.util.Set;
 
 public interface EntityDAO<T> {
     void addEntity(T entity) throws DAOException;
-    Set<String> findEntity(String searchCriterion) throws DAOException;
+    Set<String> findEntity() throws DAOException;
 }
