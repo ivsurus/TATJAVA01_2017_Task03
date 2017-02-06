@@ -12,7 +12,7 @@ import java.util.Set;
 public class TxtDiskDAO implements EntityDAO<Disk>{
 
     private DataBaseTools dbTools = DataBaseTools.getInstance();
-    private final char IDENTIFIER = 'd';
+    private final String IDENTIFIER = "d";
     private final String DELIMITER = "$%$";
 
     @Override

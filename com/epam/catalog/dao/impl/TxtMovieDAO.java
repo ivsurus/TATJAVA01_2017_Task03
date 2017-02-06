@@ -12,7 +12,7 @@ import java.util.Set;
 public class TxtMovieDAO implements EntityDAO<Movie> {
 
     private DataBaseTools dbTools = DataBaseTools.getInstance();
-    private final char IDENTIFIER = 'm';
+    private final String IDENTIFIER = "m";
     private final String DELIMITER = "$%$";
 
     @Override

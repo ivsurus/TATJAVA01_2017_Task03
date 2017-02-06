@@ -44,13 +44,14 @@ public class DataBaseTools {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("Размер прочитанного массива " + set.size());
     return set;
     }
 
-    public Set delUnnecessaryData(Set<String> set, char character){
+    public Set delUnnecessaryData(Set<String> set, String identifier){
         Iterator<String> iterator = set.iterator();
         while (iterator.hasNext()) {
-            if (!iterator.next().substring(0, 1).equals(character)) {
+            if (!iterator.next().substring(0,1).equals(identifier)) {
                 iterator.remove();
             }
         }

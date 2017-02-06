@@ -15,7 +15,7 @@ public class TxtBookDAO implements EntityDAO<Book> {
 
 
     private DataBaseTools dbTools = DataBaseTools.getInstance();
-    private final char IDENTIFIER = 'b';
+    private final String IDENTIFIER = "b";
     private final String DELIMITER = "$%$";
 
     @Override
@@ -26,7 +26,11 @@ public class TxtBookDAO implements EntityDAO<Book> {
 
     @Override
     public Set<String> findEntity(String searchCriterion) throws DAOException {
-    return dbTools.delUnnecessaryData(dbTools.readFromDB(),IDENTIFIER);
+
+        System.out.println("я тут 2");
+        System.out.println("criterion " + searchCriterion);
+        System.out.println(dbTools.delUnnecessaryData(dbTools.readFromDB(),IDENTIFIER).size());
+        return dbTools.delUnnecessaryData(dbTools.readFromDB(),IDENTIFIER);
     }
 }
 

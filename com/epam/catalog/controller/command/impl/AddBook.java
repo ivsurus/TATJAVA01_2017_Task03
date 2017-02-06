@@ -8,12 +8,14 @@ import com.epam.catalog.service.factory.ServiceFactory;
 
 
 public class AddBook implements Command {
+
+    private final String DELIMITER = "\\$%\\$";
+
     @Override
     //может быть здесь передавать строку с параметрами а не обект???
     public String execute(String request) {
-        String delimiter = "\\$%\\$";
         Book book = new Book();
-        String[] parameters = request.split(delimiter);
+        String[] parameters = request.split(DELIMITER);
         book.setTitle(parameters[1]);
         book.setAuthor(parameters[2]);
         book.setYear(parameters[3]);

@@ -11,16 +11,14 @@ import java.util.*;
 
 // на сервисах будут создаваться бины после проверок строк как на вход так и на выход
 
-
-
-/*!!! Каждый открытый метод реализации слоя сервисов имеет обязанность проверять входящие параметры
+/*!!! Каждый открытый метод реализации слоя сервисов имеет обязанность проверять входные параметры
 (кто бы и где бы до него это не делал)!*/
 
 public class BookServiceImpl implements EntityService<Book> {
 
 
-    DAOFactory daoObjectFactory = DAOFactory.getInstance();
-    EntityDAO<Book> bookDAO = daoObjectFactory.getBookDAO();
+    private DAOFactory daoObjectFactory = DAOFactory.getInstance();
+    private EntityDAO<Book> bookDAO = daoObjectFactory.getBookDAO();
 
     private final String IDENTIFIER_PATTERN = "[bmd]{1,1}";
     private final String TITLE_PATTERN = "[A-Za-zА-Яа-яЁё-!?, ]{1,30}";
@@ -35,7 +33,6 @@ public class BookServiceImpl implements EntityService<Book> {
         //проверить входные параметры на null
         //проверть входные параметры по паттернам
         //создать книгу
-
         try {
             bookDAO.addEntity(book);
         } catch (DAOException e){
@@ -43,22 +40,25 @@ public class BookServiceImpl implements EntityService<Book> {
         }
     }
 
-//провепока возвращшает просто все книги с проверенными параметрами
+    //провепока возвращшает просто все книги с проверенными параметрами
     //нужно сделать чтобы он добпвлял в сет книги только с нужными параметрами
     //по возможности сделать сортировку по этим параметрам
 
     @Override
     public Set<Book> findEntity(String request) throws ServiceException {
-       //проверим ненулевое поле на валидность
-       // если валидно - передаем book если нет - исключение
+        System.out.println("USER REQUEST" + request);
+        //проверим ненулевое поле на валидность
+        // если валидно - передаем book если нет - исключение
         // можно отсортировать коллекцию с компораторм
         //set из строк с книгами
 
-        String searchCriterion=findSearchCriterion(request);
+        // получем реквкст - строку, парсим - как-то находим нужный параметр, проверяем его на валидность
+        //передаем параметр, получем ответ из БД, парсим, проверяем на валидность, создаем коллекцию бинов и передаем контроллеру
+
+        String searchCriterion = findSearchCriterion(request);
         Set<Book> booksForUser = new HashSet<>();
         try{
             Set<String> books = bookDAO.findEntity(searchCriterion);
-
 
         for (String bookStr: books){
            boolean parmametersAreValid = validateParameters(parseDataBaseResponse(bookStr));
@@ -69,21 +69,14 @@ public class BookServiceImpl implements EntityService<Book> {
         }catch (DAOException e){
             throw new ServiceException(e);
         }
+        System.out.println("Я тут");
+        System.out.println("Количество возвращаемых пользователю книг " + booksForUser.size());
         return booksForUser;
    }
 
+    //находим критерий для поиска сущности в базе данных
     private String findSearchCriterion(String request){
-        String searchCriterion = "";
-        Map<String, String> map = parseDataBaseResponse(request);
-        Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<String, String> pair = iterator.next();
-            if (!pair.getValue().equals("null")){
-                searchCriterion=pair.getValue();
-            }
-        }
-
-        return searchCriterion;
+        return request.split(DELIMITER)[1];
     }
 
 
@@ -116,6 +109,7 @@ public class BookServiceImpl implements EntityService<Book> {
             if (!pair.getValue().matches(pair.getKey()))
             return false;
         }
+        System.out.println("Параметры из базы верны");
         return true;
     }
 }

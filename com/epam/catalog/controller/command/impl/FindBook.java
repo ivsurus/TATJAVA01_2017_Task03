@@ -14,17 +14,12 @@ public class FindBook implements Command {
     //при парсинге сделать - заполнить недостающие параметры для этого бина и верннуть его наверх
 
     //если будет много чего возвращать то вернем коллекию бинов
+
     @Override
     public String execute(String request) {
-        //использовать хитрый парсинг с регуляркой допустим помечаем нужный параметр спец символ
-       // String delimiter = "\\$%\\$";
-        //Book book = new Book();
-//        String[] parameters = request.split(delimiter);
-//        book.setTitle(parameters[1]);
-//        book.setAuthor(parameters[2]);
-//        book.setYear(parameters[3]);
         ServiceFactory serviceObjectFactory = ServiceFactory.getInstance();
         EntityService<Book> bookService = serviceObjectFactory.getBookService();
+
         try{
             bookService.findEntity(request);
         } catch (ServiceException e){

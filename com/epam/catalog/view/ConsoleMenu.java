@@ -17,6 +17,7 @@ public class ConsoleMenu {
     private final String MESSAGE_3 = "Enter a title:";
     private final String MESSAGE_4 = "Enter an author :";
     private final String MESSAGE_5 = "Enter a year:";
+    private final String MESSAGE_6 = "Enter a criterion for a search:";
     private final String DELIMITER = "_";
     private final String PARAM_DELIMITER = "$%$";
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -27,18 +28,23 @@ public class ConsoleMenu {
 
     public void start(){
 
-        controller.executeTask(readUserTask());
+       // controller.executeTask(readUserEntityToAdd());
+        controller.executeTask(readUserEntityToFind());
     }
 
     /*add_book$%$title$%$author$%$year$%$
       find_book$%$title$%$null$%$null$%$
       find_book$%$null$%$author$%$null$%$
       find_book$%$null$%$null$%$year$%$
+
+      при формировании запросов find испрользовать специальный разделиттель $!$searchCriterion$!$ ??
+      чтобы проверить его по паттерну нужно знать его место в строке??
+
     выаол*/
 
 
 
-    public String readUserTask(){
+    private String readUserEntityToAdd(){
         builder = new StringBuilder();
         System.out.println(MESSAGE_1);
         builder.append(readUserInput());
@@ -54,13 +60,25 @@ public class ConsoleMenu {
         builder.append(PARAM_DELIMITER);
         System.out.println(MESSAGE_5);
         builder.append(readUserInput());
+       // builder.append(PARAM_DELIMITER);
+        return builder.toString();
+    }
+    private String readUserEntityToFind(){
+        builder = new StringBuilder();
+        System.out.println(MESSAGE_1);
+        builder.append(readUserInput());
+        builder.append(DELIMITER);
+        System.out.println(MESSAGE_2);
+        builder.append(readUserInput());
         builder.append(PARAM_DELIMITER);
+        System.out.println(MESSAGE_6);
+        builder.append(readUserInput());
         return builder.toString();
     }
 
 
 
-    public String readUserInput(){
+    private String readUserInput(){
        String input = "";
         try {
             input = reader.readLine();
