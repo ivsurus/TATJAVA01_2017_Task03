@@ -1,6 +1,6 @@
 package com.epam.catalog.dao.impl;
 
-//реализация интерфейсов для слоя DAO
+
 
 import com.epam.catalog.bean.Book;
 import com.epam.catalog.dao.EntityDAO;

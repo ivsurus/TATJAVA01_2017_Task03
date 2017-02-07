@@ -9,8 +9,7 @@ import java.io.InputStreamReader;
 
 public class ConsoleMenu {
 
-// можно сделать просто целые строки с коммандами
-    //можно константы вынести в отдельный класс Enum
+
 
     private final String MESSAGE_1 = "Enter a command: (add find)";
     private final String MESSAGE_2 = "Enter a category: (book disk movie)";
@@ -28,25 +27,13 @@ public class ConsoleMenu {
     private Controller controller = new Controller();
 
 
-    //чтение выбранного пользователем пункта консольного меню
+
 
     public void start(){
 
       //  System.out.println(controller.executeTask(readUserEntityToAdd()));
         System.out.println(controller.executeTask(readUserEntityToFind()));
     }
-
-    /*add_book$%$$%$author$%$year$%$
-      find_book$%$title$%$null$%$null$%$
-      find_book$%$null$%$author$%$null$%$
-      find_book$%$null$%$null$%$year$%$
-
-      при формировании запросов find испрользовать специальный разделиттель $!$searchCriterion$!$ ??
-      чтобы проверить его по паттерну нужно знать его место в строке??
-
-    выаол*/
-
-
 
     private String readUserEntityToAdd(){
         builder = new StringBuilder();
@@ -64,7 +51,6 @@ public class ConsoleMenu {
         builder.append(PARAM_DELIMITER);
         System.out.println(MESSAGE_5);
         builder.append(readUserInput());
-       // builder.append(PARAM_DELIMITER);
         return builder.toString();
     }
     private String readUserEntityToFind(){

@@ -7,7 +7,6 @@ import java.util.*;
 public class DataBaseTools {
 
     private final String PATH = "C:\\Users\\Ivan_Surus\\IdeaProjects\\Task3\\src\\dataBase.txt";
-    //private final String PATH = "D:\\Сурус\\JAVA\\Task3\\src\\dataBase.txt";
     private File file = new File(PATH);
     private BufferedWriter writer;
     private BufferedReader reader;

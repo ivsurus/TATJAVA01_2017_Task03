@@ -9,7 +9,7 @@ import com.epam.catalog.dao.tools.DataBaseTools;
 import java.io.IOException;
 import java.util.Set;
 
-//реализация интерфейсов для слоя DAO
+
 public class TxtMovieDAO implements EntityDAO<Movie> {
 
     private DataBaseTools dbTools = DataBaseTools.getInstance();
